@@ -1,8 +1,20 @@
 #!/bin/sh
-
 bat()
 {
-    date "+%H:%M %Y-%m-%d"
+	b=$(pmset -g batt)
+	if [[ $b =~ discharging ]]; then
+		st="-"
+	elif [[ $b =~ charging ]]; then
+		st="+"
+	else
+		st="="
+	fi
+	pct=$(echo $b | egrep -o '[0-9]+%')
+	echo $st$pct
+}
+clock()
+{
+	date "+%H:%M %Y-%m-%d"
 }
 
-echo `bat`%
+echo "`bat`  `clock`"
