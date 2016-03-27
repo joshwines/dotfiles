@@ -15,95 +15,106 @@ Plug 'mattn/emmet-vim',            { 'for': ['html', 'javascript.jsx'] }
 
 call plug#end()
 
-" Use the Solarized Dark theme
+" make vim more useful
+set nocompatible
+
+" improve security
+set modelines=0
+
+" color scheme
 set background=dark
 colorscheme solarized
 let g:solarized_termtrans=1
 
-" Make Vim more useful
-set nocompatible
-" Use the OS clipboard by default (on versions compiled with `+clipboard`)
+" use osclipboard
 set clipboard=unnamed
-" Enhance command-line completion
+
+" better file name tab completion
+set wildmode=longest,list,full
 set wildmenu
-" Allow cursor keys in insert mode
-set esckeys
-" Allow backspace in insert mode
+set wildignorecase
+
+" allow backspace in insert mode
 set backspace=indent,eol,start
-" Optimize for fast terminal connections
+
+" optimize for fast terminal connections
 set ttyfast
-" Add the g flag to search/replace by default
+
+" use g flag for search/replace by default
 set gdefault
-" Use UTF-8 without BOM
+
+" use utf-8 without bom
 set encoding=utf-8 nobomb
-" Change mapleader
+
+" change mapleader
 let mapleader=","
-" Don’t add empty newlines at the end of files
-set binary
-set noeol
-" Centralize backups, swapfiles and undo history
+
+" centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 set undofile
 set undodir=~/.vim/undo
 set noswapfile
 
-" Don’t create backups when editing files in certain directories
+" don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
 
-" Respect modeline in files
-set modeline
-set modelines=4
-" Enable per-directory .vimrc files and disable unsafe commands in them
-set exrc
-set secure
-" Enable line numbers
+" show line numbers
 set number
-" Enable syntax highlighting
+
+" enable syntax highlighting
 syntax on
-" Highlight current line
+
+" highlight current line
 set cursorline
-" Make tabs as wide as two spaces
+
+" make tabs as wide as two spaces
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-" Show “invisible” characters
+
+" show “invisible” characters
 set lcs=tab:▸\ ,trail:·,nbsp:_
 set list
-" Highlight searches
-set hlsearch
-" Ignore case of searches
-set ignorecase
-" Highlight dynamically as pattern is typed
-set incsearch
-" Always show status line
-set laststatus=2
-" Enable mouse in all modes
-set mouse=a
-" Disable error bells
-set noerrorbells
-" Don’t reset cursor to start of line when moving around.
-set nostartofline
-" Show the cursor position
-set ruler
-" Don’t show the intro message when starting Vim
-set shortmess=atI
-" Show the current mode
-set showmode
-" Show the filename in the window titlebar
-set title
-" Show the (partial) command as it’s being typed
-set showcmd
-" Use relative line numbers
-if exists("&relativenumber")
-	set relativenumber
-	au BufReadPost * set relativenumber
-endif
-" Start scrolling three lines before the horizontal window border
-set scrolloff=3
 
-" Strip trailing whitespace (,ss)
+" highlight searches
+set hlsearch
+set incsearch
+
+" ignore case of searches
+set ignorecase
+
+" always show status line
+set laststatus=2
+
+" disable error bells
+set noerrorbells
+
+" show the cursor position
+set ruler
+
+" don’t show the intro message when starting vim
+set shortmess+=I
+
+" show the current mode
+set showmode
+
+" show the filename in the window titlebar
+set title
+
+" show the (partial) command as it’s being typed
+set showcmd
+
+" start scrolling four lines before the horizontal window border
+set scrolloff=4
+
+" vim-ruby is shit slow. speed it up a bit
+set lazyredraw
+set re=1
+let ruby_no_expensive=1
+
+" strip trailing whitespace
 function! StripWhitespace()
 	let save_cursor = getpos(".")
 	let old_query = getreg('/')
@@ -112,20 +123,26 @@ function! StripWhitespace()
 	call setreg('/', old_query)
 endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
-" Save a file as root (,W)
+
+" save a file as root
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
-" Automatic commands
-if has("autocmd")
-	" Enable file type detection
+" shortcut to turn off previous search highlight
+nmap <silent> ,/ :nohlsearch<CR>
+
+" enable file type detection
 filetype plugin indent on
-	" Treat .json files as .js
+
+" automatic commands
+if has("autocmd")
+	" treat .json files as .js
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-	" Treat .md files as Markdown
+
+	" treat .md files as markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
 
-" noob
+" be less noob
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
