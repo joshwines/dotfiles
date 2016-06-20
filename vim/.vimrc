@@ -12,6 +12,9 @@ Plug 'pangloss/vim-javascript',    { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'kchmck/vim-coffee-script',   { 'for': ['coffee'] }
 Plug 'mattn/emmet-vim',            { 'for': ['html', 'javascript.jsx'] }
 "Plug 'justinj/vim-react-snippets', { 'for': ['javascript.jsx'] }
+Plug 'tpope/vim-fugitive'
+Plug 'rking/ag.vim'
+Plug 'kien/ctrlp.vim'
 
 call plug#end()
 
@@ -68,8 +71,8 @@ syntax on
 " highlight current line
 set cursorline
 
-" make tabs as wide as two spaces
-set tabstop=2
+" tabs
+set tabstop=4
 set shiftwidth=2
 set softtabstop=2
 set expandtab
@@ -109,6 +112,9 @@ set showcmd
 " start scrolling four lines before the horizontal window border
 set scrolloff=4
 
+" show 80th character column
+set colorcolumn=80
+
 " vim-ruby is shit slow. speed it up a bit
 set lazyredraw
 set re=1
@@ -140,6 +146,11 @@ if has("autocmd")
 
 	" treat .md files as markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+endif
+
+" make ctrlp faster
+if executable('ag')
+	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
 " be less noob
