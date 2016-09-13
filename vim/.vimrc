@@ -8,10 +8,8 @@ Plug 'elzr/vim-json',              { 'for': ['json'] }
 Plug 'othree/html5.vim',           { 'for': ['html', 'eelixir'] }
 Plug 'slim-template/vim-slim',     { 'for': ['slim'] }
 Plug 'pangloss/vim-javascript',    { 'for': ['javascript', 'javascript.jsx'] }
-"Plug 'mxw/vim-jsx',                { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'kchmck/vim-coffee-script',   { 'for': ['coffee'] }
 Plug 'mattn/emmet-vim',            { 'for': ['html', 'javascript.jsx'] }
-"Plug 'justinj/vim-react-snippets', { 'for': ['javascript.jsx'] }
 Plug 'tpope/vim-fugitive'
 Plug 'rking/ag.vim'
 Plug 'kien/ctrlp.vim'
@@ -35,7 +33,6 @@ set clipboard=unnamed
 " better file name tab completion
 set wildmode=longest,list,full
 set wildmenu
-set wildignorecase
 
 " allow backspace in insert mode
 set backspace=indent,eol,start
@@ -117,7 +114,6 @@ set colorcolumn=80
 
 " vim-ruby is shit slow. speed it up a bit
 set lazyredraw
-set re=1
 let ruby_no_expensive=1
 
 " strip trailing whitespace

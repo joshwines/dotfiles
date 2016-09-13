@@ -126,7 +126,9 @@ brew install tmux
 brew install unrar
 brew install weechat
 brew install ncmpcpp
+brew install toilet
 
+brew cask install aria2c
 brew cask install dash
 brew cask install iterm2
 brew cask install macpass
@@ -136,12 +138,10 @@ brew cask install steam
 brew cask install virtualbox
 brew cask install firefox
 brew cask install libreoffice
-brew cask install mumble
 brew cask install paw
 brew cask install spectacle
 brew cask install vagrant
 brew cask install vlc
-brew install toilet
 
 # Remove outdated versions from the cellar.
 brew cleanup
