@@ -26,10 +26,9 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade --all
 
-# Install GNU core utilities (those that come with OS X are outdated).
+# Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
-sudo ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 
 # Install some other useful utilities like `sponge`.
 brew install moreutils
@@ -53,10 +52,11 @@ brew install wget --with-iri
 brew install ringojs
 brew install narwhal
 
-# Install more recent versions of some OS X tools.
+# Install more recent versions of some macOS tools.
 brew install vim --override-system-vi
 brew install homebrew/dupes/grep
 brew install homebrew/dupes/openssh
+brew install homebrew/dupes/screen
 brew install homebrew/php/php56 --with-gmp
 
 # Install font tools.
@@ -64,6 +64,9 @@ brew tap bramstein/webfonttools
 brew install sfnt2woff
 brew install sfnt2woff-zopfli
 brew install woff2
+
+# Java
+brew cask install java
 
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
 brew install aircrack-ng
@@ -88,7 +91,7 @@ brew install tcpflow
 brew install tcpreplay
 brew install tcptrace
 brew install ucspi-tcp # `tcpserver` etc.
-brew install xpdf
+brew install homebrew/x11/xpdf
 brew install xz
 
 # Install other useful binaries.
@@ -109,38 +112,53 @@ brew install speedtest_cli
 brew install ssh-copy-id
 brew install testssl
 brew install tree
+brew install vbindiff
 brew install webkit2png
 brew install zopfli
 
-brew install openssl
-brew install readline
+# Ruby
 brew install libyaml
 brew install rbenv
 brew install rbenv-vars
 brew install rbenv-gem-rehash
 brew install rbenv-default-gems
 brew install ruby-build
-brew install lftp
-brew install zsh
+
+# CLI
 brew install tmux
+brew install zsh
+
+# Tools
+brew install android-platform-tools
+brew install aria2
+#brew install lftp
+brew install ncmpcpp
+brew install openssl
+brew install readline
+brew install toilet
 brew install unrar
 brew install weechat
-brew install ncmpcpp
-brew install toilet
 
-brew cask install aria2c
+# Browsers
+brew cask install firefox
+brew cask install google-chrome
+
+# Apps
+brew cask install android-file-transfer
 brew cask install dash
+brew cask install google-play-music-desktop-player
 brew cask install iterm2
+brew cask install libreoffice
 brew cask install macpass
 brew cask install ngrok
-brew cask install seil
-brew cask install steam
-brew cask install virtualbox
-brew cask install firefox
-brew cask install libreoffice
 brew cask install paw
+#brew cask install seil
+brew cask install slack
 brew cask install spectacle
+brew cask install steam
+brew cask install the-unarchiver
 brew cask install vagrant
+brew cask install virtualbox
 brew cask install vlc
 
 # Remove outdated versions from the cellar.
