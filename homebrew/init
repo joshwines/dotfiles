@@ -134,7 +134,7 @@ brew install aria2
 #brew install lftp
 brew install ncmpcpp
 brew install openssl
-brew install readline
+brew install reattach-to-user-namespace
 brew install toilet
 brew install unrar
 brew install weechat
