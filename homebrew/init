@@ -130,13 +130,17 @@ brew install zsh
 
 # Tools
 brew install android-platform-tools
+brew install ant
 brew install aria2
+brew install cowsay
 #brew install lftp
 brew install ncmpcpp
 brew install openssl
 brew install reattach-to-user-namespace
+brew install the_silver_searcher
 brew install toilet
 brew install unrar
+brew install watch
 brew install weechat
 
 # Browsers
