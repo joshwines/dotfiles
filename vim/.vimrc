@@ -148,6 +148,7 @@ endif
 if executable('ag')
 	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 	let g:ag_prg="ag --vimgrep"
+	ca Ag Ag!
 endif
 
 " be less noob
