@@ -138,7 +138,7 @@ brew install zsh
 brew install android-platform-tools
 brew install ansible
 brew install ant
-brew install aria2
+brew install aria2 --with-libssh2
 brew install cowsay
 brew install dfu-util
 #brew install lftp
