@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 bat()
 {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
 	b=$(pmset -g batt)
 	if [[ $b =~ discharging ]]; then
 		st="-"
@@ -11,6 +12,9 @@ bat()
 	fi
 	pct=$(echo $b | egrep -o '[0-9]+%')
 	echo $st$pct
+  elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+    upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep "percentage" | egrep -o '[0-9]+%'
+  fi
 }
 clock()
 {
