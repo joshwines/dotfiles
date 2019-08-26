@@ -11,8 +11,12 @@ Plug 'pangloss/vim-javascript',    { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'kchmck/vim-coffee-script',   { 'for': ['coffee'] }
 Plug 'mattn/emmet-vim',            { 'for': ['html', 'javascript.jsx'] }
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'rking/ag.vim'
 Plug 'kien/ctrlp.vim'
+
+" Formatting
+Plug 'luochen1990/rainbow'
 
 call plug#end()
 
@@ -26,6 +30,7 @@ set modelines=0
 set background=dark
 colorscheme solarized
 let g:solarized_termtrans=1
+let g:rainbow_active = 1
 
 " use osclipboard
 set clipboard=unnamed
