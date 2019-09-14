@@ -19,3 +19,6 @@ export LESSCHARSET=utf-8
 # colors
 export CLICOLOR=1
 export TERM=xterm-256color
+
+# node
+export NODE_OPTIONS=--max-old-space-size=4096
