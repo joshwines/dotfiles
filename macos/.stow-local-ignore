@@ -6,3 +6,4 @@
 /duti
 .DS_Store
 defaults.sh
+.Brewfile.lock.json
