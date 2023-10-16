@@ -1,2 +1,2 @@
-export PATH="/Users/josh/.rbenv/shims:$PATH"
+export PATH="${HOME}/.rbenv/shims:$PATH"
 eval "$(rbenv init - zsh)"
