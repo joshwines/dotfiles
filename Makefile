@@ -55,7 +55,7 @@ usage:
 linux: stow vim
 	sudo apt install build-essential
 
-macos: brew stow vim
+macos: brew stow vim ohmyzsh
 	bash $(DOTFILES_DIR)/macos/defaults.sh
 	bash $(DOTFILES_DIR)/macos/duti/set.sh
 	$(BREW_PREFIX)/bin/stow macos
@@ -70,7 +70,7 @@ macos: brew stow vim
 pcluster: iterm stow vim
 	sudo yum install -y python3-devel
 
-.PHONY: brew stow
+.PHONY: brew stow ohmyzsh
 
 brew:
 ifeq ($(shell which brew),)
@@ -81,7 +81,7 @@ else
 endif
 	$(BREW_PREFIX)/bin/brew analytics off
 	$(BREW_PREFIX)/bin/brew update
-	$(BREW_PREFIX)/bin/brew upgrade --all
+	$(BREW_PREFIX)/bin/brew upgrade
 	$(BREW_PREFIX)/bin/brew bundle --file=$(DOTFILES_DIR)/$(BREWFILE)
 
 iterm:
@@ -98,3 +98,6 @@ stow:
 
 vim:
 	vim +PlugInstall +qall
+
+ohmyzsh:
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
