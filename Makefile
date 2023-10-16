@@ -55,16 +55,16 @@ usage:
 linux: stow vim
 	sudo apt install build-essential
 
-macos: brew stow vim ohmyzsh
+macos: brew ohmyzsh stow vim
 	bash $(DOTFILES_DIR)/macos/defaults.sh
 	bash $(DOTFILES_DIR)/macos/duti/set.sh
 	$(BREW_PREFIX)/bin/stow macos
 	#$(BREW_PREFIX)/bin/brew services start yabai
 	#$(BREW_PREFIX)/bin/brew services start skhd
-	echo $(BREW_PREFIX)/bin/zsh | sudo tee -a /etc/shells
+	grep -qxF '$(BREW_PREFIX)/bin/zsh' /etc/shells || echo $(BREW_PREFIX)/bin/zsh | sudo tee -a /etc/shells
 	chsh -s $(BREW_PREFIX)/bin/zsh
-	ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
-	softwareupdate -aiR
+	sudo ln -sf /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
+	softwareupdate -ai
 
 # Install iTerm shell integ first since it may write to ~/.bash_profile
 pcluster: iterm stow vim
@@ -88,8 +88,6 @@ iterm:
 	curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
 
 stow:
-	[ -f ~/.bash_profile ] && [ ! -L ~/.bash_profile ] && mv ~/.bash_profile ~/.bash_profile.bak
-	[ -f ~/.bashrc ] && [ ! -L ~/.bashrc ] && mv ~/.bashrc ~/.bashrc.bak
 	stow curl
 	stow git
 	stow tmux
@@ -100,4 +98,11 @@ vim:
 	vim +PlugInstall +qall
 
 ohmyzsh:
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+ifneq ($(wildcard ${HOME}/.oh-my-zsh/.*),)
+	@printf "OhMyZSH already installed; skipping installation\\n"
+else
+	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+	@printf "Removing default .zshrc\\n"
+	rm ${HOME}/.zshrc
+endif
+
