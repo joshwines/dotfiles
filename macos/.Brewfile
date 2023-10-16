@@ -50,10 +50,10 @@ brew "skhd"
 brew "speedtest-cli"
 brew "stow"
 brew "tldr"
+brew "tmux"
 brew "tree"
 brew "unar"
-brew "utm"
-brew "vim", args: ["override-system-vi"]
+brew "vim"
 brew "wabt"
 brew "watch"
 brew "wget"
@@ -65,11 +65,8 @@ cask "alacritty"
 cask "android-file-transfer"
 cask "discord"
 cask "docker"
+cask "font-inconsolata"
 cask "font-open-sans"
-cask "font-open-sans-condensed"
-cask "font-source-code-pro"
-cask "font-source-sans-pro"
-cask "font-source-serif-pro"
 cask "google-chrome"
 cask "iina"
 cask "macpass"
@@ -79,16 +76,11 @@ cask "oracle-jdk"
 cask "slack"
 cask "steam"
 cask "transmission"
-
-mas "Microsoft Excel", id: 462058435
-mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft Word", id: 462054704
-mas "Spillo", id: 873245660
+cask "zoom"
 
 # Ruby
 brew "libyaml"
 brew "rbenv"
 brew "rbenv-vars"
-brew "rbenv-gem-rehash"
 brew "rbenv-default-gems"
 brew "ruby-build"
