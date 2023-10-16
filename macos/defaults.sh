@@ -119,26 +119,6 @@ defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 #sudo ln -s /path/to/your/image /System/Library/CoreServices/DefaultDesktop.jpg
 
 ###############################################################################
-# SSD-specific tweaks                                                         #
-###############################################################################
-
-# Disable local Time Machine snapshots
-sudo tmutil disablelocal
-
-# Disable hibernation (speeds up entering sleep mode)
-#sudo pmset -a hibernatemode 0
-
-# Remove the sleep image file to save disk space
-#sudo rm /private/var/vm/sleepimage
-# Create a zero-byte file instead…
-#sudo touch /private/var/vm/sleepimage
-# …and make sure it can’t be rewritten
-#sudo chflags uchg /private/var/vm/sleepimage
-
-# Disable the sudden motion sensor as it’s not useful for SSDs
-#sudo pmset -a sms 0
-
-###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 
@@ -173,7 +153,8 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 #defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 0
+defaults write NSGlobalDomain KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+defaults write NSGlobalDomain InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 
 # Set language and text formats
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
@@ -184,7 +165,7 @@ defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
 
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
-sudo systemsetup -settimezone "Australia/Melbourne" > /dev/null
+sudo systemsetup -settimezone "Australia/Melbourne" 2>/dev/null 1>&2
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
@@ -332,7 +313,7 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 #defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
 # Set the icon size of Dock items to 36 pixels
-defaults write com.apple.dock tilesize -int 42
+defaults write com.apple.dock tilesize -int 64
 
 # Change minimize/maximize window effect
 defaults write com.apple.dock mineffect -string "scale"
@@ -420,50 +401,50 @@ defaults write com.apple.dock autohide -bool true
 ###############################################################################
 
 # Privacy: don’t send search queries to Apple
-defaults write com.apple.Safari UniversalSearchEnabled -bool false
-defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+defaults write com.apple.Safari.plist UniversalSearchEnabled -bool false
+defaults write com.apple.Safari.plist SuppressSearchSuggestions -bool true
 
 # Enable “Do Not Track”
-defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
+defaults write com.apple.Safari.plist SendDoNotTrackHTTPHeader -bool true
 
 # Press Tab to highlight each item on a web page
-defaults write com.apple.Safari WebKitTabToLinksPreferenceKey -bool true
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks -bool true
+defaults write com.apple.Safari.plist WebKitTabToLinksPreferenceKey -bool true
+defaults write com.apple.Safari.plist com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks -bool true
 
 # Show the full URL in the address bar (note: this still hides the scheme)
-defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+defaults write com.apple.Safari.plist ShowFullURLInSmartSearchField -bool true
 
 # Set Safari’s home page to `about:blank` for faster loading
-defaults write com.apple.Safari HomePage -string "about:blank"
+defaults write com.apple.Safari.plist HomePage -string "about:blank"
 
 # Prevent Safari from opening ‘safe’ files automatically after downloading
-defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
+defaults write com.apple.Safari.plist AutoOpenSafeDownloads -bool false
 
 # Allow hitting the Backspace key to go to the previous page in history
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true
+defaults write com.apple.Safari.plist com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true
 
 # Hide Safari’s bookmarks bar by default
-defaults write com.apple.Safari ShowFavoritesBar -bool false
+defaults write com.apple.Safari.plist ShowFavoritesBar -bool false
 
 # Hide Safari’s sidebar in Top Sites
-defaults write com.apple.Safari ShowSidebarInTopSites -bool false
+defaults write com.apple.Safari.plist ShowSidebarInTopSites -bool false
 
 # Disable Safari’s thumbnail cache for History and Top Sites
-#defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
+#defaults write com.apple.Safari.plist DebugSnapshotsUpdatePolicy -int 2
 
 # Enable Safari’s debug menu
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+defaults write com.apple.Safari.plist IncludeInternalDebugMenu -bool true
 
 # Make Safari’s search banners default to Contains instead of Starts With
-defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
+defaults write com.apple.Safari.plist FindOnPageMatchesWordStartsOnly -bool false
 
 # Remove useless icons from Safari’s bookmarks bar
-defaults write com.apple.Safari ProxiesInBookmarksBar "()"
+defaults write com.apple.Safari.plist ProxiesInBookmarksBar "()"
 
 # Enable the Develop menu and the Web Inspector in Safari
-defaults write com.apple.Safari IncludeDevelopMenu -bool true
-defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+defaults write com.apple.Safari.plist IncludeDevelopMenu -bool true
+defaults write com.apple.Safari.plist WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+defaults write com.apple.Safari.plist com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
 
 # Add a context menu item for showing the Web Inspector in web views
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
@@ -477,7 +458,7 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 #defaults write com.apple.mail DisableSendAnimations -bool true
 
 # Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
-defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+defaults write com.apple.mail.plist AddressesIncludeNameOnPasteboard -bool false
 
 # Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app
 #defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" -string "@\\U21a9"
@@ -491,7 +472,7 @@ defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 #defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 
 # Disable automatic spell checking
-defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnabled"
+defaults write com.apple.mail.plist SpellCheckingBehavior -string "NoSpellCheckingEnabled"
 
 ###############################################################################
 # Spotlight                                                                   #
@@ -502,7 +483,7 @@ defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnab
 # Disable Spotlight indexing for any volume that gets mounted and has not yet
 # been indexed before.
 # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+#sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
 # Change indexing order and disable some search results
 # Yosemite-specific search results (remove them if you are using OS X 10.9 or older):
 # 	MENU_DEFINITION
@@ -614,7 +595,7 @@ EOD
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 # Disable local Time Machine backups
-hash tmutil &> /dev/null && sudo tmutil disablelocal
+#hash tmutil &> /dev/null && sudo tmutil disable
 
 ###############################################################################
 # Activity Monitor                                                            #
@@ -740,10 +721,7 @@ defaults write org.m0k.transmission WarningLegal -bool false
 # Kill affected applications                                                  #
 ###############################################################################
 
-for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
-	"Dock" "Finder" "Google Chrome" "Google Chrome Canary" "Mail" "Messages" \
-	"Opera" "Photos" "Safari" "SystemUIServer" "Terminal" \
-	"Transmission" "iCal"; do
-	killall "${app}" &> /dev/null
-done
+killall Dock
+killall Finder
+
 echo "Done. Note that some of these changes require a logout/restart to take effect."
