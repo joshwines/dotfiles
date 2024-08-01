@@ -13,8 +13,9 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 
-# rbenv
+# codeenv
 .ruby-version
+.python-version
 
 # docker
 docker-compose-*.yml
