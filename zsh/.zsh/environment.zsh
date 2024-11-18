@@ -1,5 +1,10 @@
 # paths
 export PATH=$HOME/bin:$PATH
+export PATH=/opt/homebrew/opt/postgresql@16/bin:$PATH
+
+if [ -d "$HOME/.nodes" ]; then
+  export PATH=$HOME/.nodes/14/node-v14.19.3-darwin-arm64/bin:$PATH
+fi
 
 # preferred editor
 export EDITOR='vim';
