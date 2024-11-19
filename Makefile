@@ -88,11 +88,11 @@ iterm:
 	curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
 
 stow:
-	stow curl
-	stow git
-	stow tmux
-	stow vim
-	stow zsh
+	$(BREW_PREFIX)/bin/stow curl
+	$(BREW_PREFIX)/bin/stow git
+	$(BREW_PREFIX)/bin/stow tmux
+	$(BREW_PREFIX)/bin/stow vim
+	$(BREW_PREFIX)/bin/stow zsh
 
 vim:
 	vim +PlugInstall +qall
