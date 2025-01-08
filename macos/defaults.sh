@@ -702,11 +702,11 @@ defaults write ~/Library/Preferences/org.gpgtools.gpgmail SignNewEmailsByDefault
 # Rectangle.app                                                               #
 ###############################################################################
 
-defaults write com.knollsoft.Rectangle gapSize -int 10
-defaults write com.knollsoft.Rectangle screenEdgeGapRight -int 5
-defaults write com.knollsoft.Rectangle screenEdgeGapLeft -int 5
-defaults write com.knollsoft.Rectangle screenEdgeGapBottom -int 5
-defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 5
+defaults write com.knollsoft.Rectangle gapSize -int 2
+defaults write com.knollsoft.Rectangle screenEdgeGapRight -int 2
+defaults write com.knollsoft.Rectangle screenEdgeGapLeft -int 2
+defaults write com.knollsoft.Rectangle screenEdgeGapBottom -int 2
+defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 2
 
 ###############################################################################
 # Transmission.app                                                            #
