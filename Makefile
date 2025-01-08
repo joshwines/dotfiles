@@ -57,12 +57,12 @@ linux: stow vim
 
 macos: brew ohmyzsh stow vim
 	bash $(DOTFILES_DIR)/macos/defaults.sh
-	bash $(DOTFILES_DIR)/macos/duti/set.sh
+	#bash $(DOTFILES_DIR)/macos/duti/set.sh
 	$(BREW_PREFIX)/bin/stow macos
 	#$(BREW_PREFIX)/bin/brew services start yabai
 	#$(BREW_PREFIX)/bin/brew services start skhd
-	grep -qxF '$(BREW_PREFIX)/bin/zsh' /etc/shells || echo $(BREW_PREFIX)/bin/zsh | sudo tee -a /etc/shells
-	chsh -s $(BREW_PREFIX)/bin/zsh
+	#grep -qxF '$(BREW_PREFIX)/bin/zsh' /etc/shells || echo $(BREW_PREFIX)/bin/zsh | sudo tee -a /etc/shells
+	#chsh -s $(BREW_PREFIX)/bin/zsh
 	sudo ln -sf /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
 	softwareupdate -ai
 
