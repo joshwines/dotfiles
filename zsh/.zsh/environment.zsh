@@ -2,8 +2,9 @@
 export PATH=$HOME/bin:$PATH
 export PATH=/opt/homebrew/opt/postgresql@16/bin:$PATH
 
-if [ -d "$HOME/.nodes" ]; then
-  export PATH=$HOME/.nodes/14/node-v14.19.3-darwin-arm64/bin:$PATH
+if command -v /usr/libexec/java_home >/dev/null 2>&1; then
+  export JAVA_HOME=$(/usr/libexec/java_home)
+  export PATH="$JAVA_HOME/bin:$PATH"
 fi
 
 # preferred editor
