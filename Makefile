@@ -64,6 +64,14 @@ macos: brew ohmyzsh stow vim
 	#grep -qxF '$(BREW_PREFIX)/bin/zsh' /etc/shells || echo $(BREW_PREFIX)/bin/zsh | sudo tee -a /etc/shells
 	#chsh -s $(BREW_PREFIX)/bin/zsh
 	sudo ln -sf /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
+	@printf "Installing iCloud session cleaner LaunchAgent\\n"
+	mkdir -p ~/Library/LaunchAgents
+	cp $(DOTFILES_DIR)/macos/com.josh.cloudsessioncleaner.plist ~/Library/LaunchAgents/
+	# Unload if loaded
+	launchctl list | grep -q com.josh.cloudsessioncleaner && \
+	launchctl unload -w ~/Library/LaunchAgents/com.josh.cloudsessioncleaner.plist || true
+	# Load fresh
+	launchctl load -w ~/Library/LaunchAgents/com.josh.cloudsessioncleaner.plist
 	softwareupdate -ai
 
 # Install iTerm shell integ first since it may write to ~/.bash_profile
