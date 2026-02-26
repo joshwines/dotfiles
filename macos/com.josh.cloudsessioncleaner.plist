@@ -8,8 +8,7 @@
   <key>ProgramArguments</key>
   <array>
     <string>/bin/bash</string>
-    <string>-c</string>
-    <string>if [ $(du -sk ~/Library/Application\ Support/CloudDocs/session 2&gt;/dev/null | awk '{print $$1}') -gt 5000000 ] &amp;&amp; rm -rf ~/Library/Application\ Support/CloudDocs/session &amp;&amp; osascript -e 'display notification "Deleted iCloud session cache &gt;5GB" with title "Auto Cleanup"'; fi</string>
+    <string>~/dotfiles/macos/session-cleaner.sh</string>
   </array>
   <key>StartCalendarInterval</key>
   <dict>
