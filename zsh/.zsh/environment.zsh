@@ -28,3 +28,6 @@ export TERM=xterm-256color
 
 # node
 export NODE_OPTIONS=--max-old-space-size=4096
+
+# lm studio
+[[ -d "$HOME/.lmstudio/bin" ]] && export PATH="$PATH:$HOME/.lmstudio/bin"
