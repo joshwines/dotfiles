@@ -4,3 +4,6 @@ vim/.vim/.netrwhist
 .Brewfile.lock.json
 macos/.config/gtk-2.0/gtkfilechooser.ini
 zsh/.zsh/secrets.zsh
+macos/.config/gh/
+macos/.config/btop/
+macos/.config/iterm2/
